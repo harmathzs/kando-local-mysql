@@ -15,6 +15,22 @@ const conn = mysql.createConnection({
 });
 
 app.get('/mueslis', (req, res)=>{
+    console.log('conn', conn)
+    /*
+        Connection {
+        _events: [Object: null prototype] {},
+        _eventsCount: 0,
+        _maxListeners: undefined,
+        config: ConnectionConfig {
+            isServer: undefined,
+            stream: undefined,
+            host: 'localhost',
+            port: 3306,
+            localAddress: undefined,
+            socketPath: undefined,
+            user: 'root',
+            password: ...
+    */
     conn.connect(error=>{
         if (error) console.warn(error)
         else {
@@ -59,7 +75,7 @@ app.get('/mueslis', (req, res)=>{
                             { ...
                     */
                 } else {
-                    res.sendStatus(403)
+                    res.sendStatus(403) // 403 Forbidden
                 }
             })
         }
