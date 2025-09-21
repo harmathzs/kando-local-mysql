@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Mueslis</title>
+  <style>
+    :root {
+      --bg-color: #f9f9f9;
+      --nav-bg: #ffffff;
+      --nav-text: #333;
+      --nav-hover: #ddd;
+      --nav-expanded-bg: #e0e0e0;
+      --content-bg: #fff;
+      --text-color: #222;
+      --table-border: #ccc;
+      --table-header-bg: #f0f0f0;
+      --table-row-hover: #f7f7f7;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    nav {
+      background-color: var(--nav-bg);
+      color: var(--nav-text);
+      width: 60px;
+      transition: width 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      user-select: none;
+    }
+
+    nav.expanded {
+      width: 200px;
+      background-color: var(--nav-expanded-bg);
+    }
+
+    nav .menu-item {
+      padding: 1rem;
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--table-border);
+      display: flex;
+      align-items: center;
+      transition: background-color 0.2s ease;
+      font-weight: 600;
+    }
+
+    nav .menu-item:hover {
+      background-color: var(--nav-hover);
+    }
+
+    nav .menu-text {
+      margin-left: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    nav.expanded .menu-text {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    main {
+      flex-grow: 1;
+      background-color: var(--content-bg);
+      overflow-x: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main h1 {
+      margin: 0 0 1rem 0;
+      font-weight: 700;
+      font-size: 2rem;
+      white-space: nowrap;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 600px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    thead {
+      background-color: var(--table-header-bg);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--table-border);
+    }
+
+    tbody tr:hover {
+      background-color: var(--table-row-hover);
+    }
+
+    /* Paragraph style for About page */
+    main .about-paragraph {
+      max-width: 800px;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: var(--text-color);
+      white-space: normal;
+      word-wrap: break-word;
+    }
+
+    /* Page container div flexbox: */
+.page-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}    
+  </style>
+</head>
+<body>
+  <nav id="navbar" title="Toggle menu width">
+    <div class="menu-item" tabindex="0" data-content="products">
+      <span class="menu-icon">📦</span>
+      <span class="menu-text">Products</span>
+    </div>
+    <div class="menu-item" tabindex="0" data-content="prices">
+      <span class="menu-icon">💰</span>
+      <span class="menu-text">Prices</span>
+    </div>
+    <div class="menu-item" tabindex="0" data-content="about">
+      <span class="menu-icon">ℹ️</span>
+      <span class="menu-text">About</span>
+    </div>
+  </nav>
+
+  <main id="content-area">
+    <!-- Default content is Products/Prices table -->
+    <h1>My mueslis</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Classic Muesli</td><td>$4.65</td></tr>
+        <tr><td>2</td><td>Berry Lovers</td><td>$3.02</td></tr>
+        <tr><td>3</td><td>Nuts & Honey</td><td>$4.12</td></tr>
+        <tr><td>4</td><td>Tropical Mix</td><td>$4.93</td></tr>
+        <tr><td>5</td><td>Choco Delight</td><td>$2.73</td></tr>
+        <tr><td>6</td><td>Organic Oats</td><td>$3.55</td></tr>
+        <tr><td>7</td><td>Apple Cinnamon</td><td>$5.42</td></tr>
+        <tr><td>8</td><td>Fruit & Nut</td><td>$5.60</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const contentArea = document.getElementById('content-area');
+
+    const productsContent = `
+      <h1>My mueslis</h1>
+      <table>
+        <thead>
+          <tr><th>id</th><th>name</th><th>price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Classic Muesli</td><td>$4.65</td></tr>
+          <tr><td>2</td><td>Berry Lovers</td><td>$3.02</td></tr>
+          <tr><td>3</td><td>Nuts & Honey</td><td>$4.12</td></tr>
+          <tr><td>4</td><td>Tropical Mix</td><td>$4.93</td></tr>
+          <tr><td>5</td><td>Choco Delight</td><td>$2.73</td></tr>
+          <tr><td>6</td><td>Organic Oats</td><td>$3.55</td></tr>
+          <tr><td>7</td><td>Apple Cinnamon</td><td>$5.42</td></tr>
+          <tr><td>8</td><td>Fruit & Nut</td><td>$5.60</td></tr>
+        </tbody>
+      </table>`;
+
+    const aboutContent = `
+      <h1>Super muesli infos</h1>
+      <p>by Kando Corp</p>
+      <p class="about-paragraph">
+        Muesli is a healthy and popular breakfast choice made from a mixture of rolled oats, nuts, seeds, and dried fruits. It originated in Switzerland and is well-known for its high fiber content and nutritional benefits.
+      </p>
+      <p class="about-paragraph">
+        Many people enjoy muesli as it offers a convenient way to consume a balanced mix of carbohydrates, proteins, and healthy fats. It can be served with milk, yogurt, or fruit juices and is often customized with various ingredients to suit personal tastes.
+      </p>
+      <p class="about-paragraph">
+        Thanks to its versatility and wholesome ingredients, muesli remains a favorite for health-conscious consumers worldwide. Whether classic, fruity, or nutty variations, it provides a delicious start to the day.
+      </p>`;
+
+    // Initially load products content
+    let currentContent = 'products';
+
+    navbar.addEventListener('click', (event) => {
+      if (!event.target.closest('.menu-item')) return;
+      let menuItem = event.target.closest('.menu-item');
+      let contentType = menuItem.getAttribute('data-content');
+      currentContent = contentType;
+
+      // Toggle navbar width on click anywhere on navbar except on same menu item clicked repeatedly
+      navbar.classList.toggle('expanded');
+
+      // Load content depending on menu selection
+      if (contentType === 'about') {
+        contentArea.innerHTML = aboutContent;
+      } else {
+        contentArea.innerHTML = productsContent;
+      }
+    });
+  </script>
+</body>
+</html>
